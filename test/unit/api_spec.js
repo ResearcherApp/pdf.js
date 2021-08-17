@@ -309,7 +309,7 @@ describe("api", function () {
 
     it(
       "creates pdf doc from password protected PDF file and aborts/throws " +
-        "in the onPassword callback (issue 7806)",
+      "in the onPassword callback (issue 7806)",
       async function () {
         const filename = "issue3371.pdf";
 
@@ -488,8 +488,8 @@ describe("api", function () {
 
       expect(
         worker1.port !== worker2.port &&
-          worker1.port !== worker3.port &&
-          worker2.port !== worker3.port
+        worker1.port !== worker3.port &&
+        worker2.port !== worker3.port
       ).toEqual(true);
       worker1.destroy();
       worker2.destroy();
@@ -1157,7 +1157,7 @@ describe("api", function () {
 
       expect(custom["PTEX.Fullbanner"]).toEqual(
         "This is pdfeTeX, " +
-          "Version 3.141592-1.21a-2.2 (Web2C 7.5.4) kpathsea version 3.5.6"
+        "Version 3.141592-1.21a-2.2 (Web2C 7.5.4) kpathsea version 3.5.6"
       );
       // The following are PDF.js specific, non-standard, properties.
       expect(info.PDFFormatVersion).toEqual("1.4");
@@ -1257,10 +1257,10 @@ describe("api", function () {
         }
         const params = buildGetDocumentParams(filename, options);
         const url = new URL(params.url);
-        if (url.hostname === "localhost") {
+        if (url.hostname === "0.0.0.0") {
           url.hostname = "127.0.0.1";
         } else if (params.url.hostname === "127.0.0.1") {
-          url.hostname = "localhost";
+          url.hostname = "0.0.0.0";
         } else {
           pending("Can only run cross-origin test on localhost!");
         }
@@ -1678,7 +1678,7 @@ describe("api", function () {
 
     it(
       "gets operatorList, from corrupt PDF file (issue 8702), " +
-        "with/without `stopAtErrors` set",
+      "with/without `stopAtErrors` set",
       async function () {
         const loadingTask1 = getDocument(
           buildGetDocumentParams("issue8702.pdf", {
@@ -2195,7 +2195,7 @@ describe("api", function () {
 
     it(
       "should fetch document info and page, without range, " +
-        "using complete initialData",
+      "using complete initialData",
       async function () {
         let fetches = 0;
 

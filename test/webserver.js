@@ -43,7 +43,7 @@ var defaultMimeType = "application/octet-stream";
 
 function WebServer() {
   this.root = ".";
-  this.host = "localhost";
+  this.host = "0.0.0.0";
   this.port = process.env.PORT || 8080;
   this.server = null;
   this.verbose = false;
