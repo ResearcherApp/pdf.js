@@ -69,8 +69,8 @@
   --toolbarButton-menuArrow-icon: url(images/toolbarButton-menuArrow.svg);
   --toolbarButton-sidebarToggle-icon: url(images/toolbarButton-sidebarToggle.svg);
   --toolbarButton-secondaryToolbarToggle-icon: url(images/toolbarButton-secondaryToolbarToggle.svg);
-  --toolbarButton-pageUp-icon: url(images/toolbarButton-pageUp.svg);
-  --toolbarButton-pageDown-icon: url(images/toolbarButton-pageDown.svg);
+  --toolbarButton-pageUp-icon: url(images/pdf_arrow_left.svg);
+  --toolbarButton-pageDown-icon: url(images/pdf_arrow_right.svg);
   --toolbarButton-zoomOut-icon: url(images/toolbarButton-zoomOut.svg);
   --toolbarButton-zoomIn-icon: url(images/toolbarButton-zoomIn.svg);
   --toolbarButton-presentationMode-icon: url(images/toolbarButton-presentationMode.svg);
@@ -308,9 +308,9 @@ html[dir="rtl"] #sidebarContent {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   position: absolute;
-  top: 32px;
+  top: 0;
   right: 0;
-  bottom: 0;
+  bottom: 32px;
   left: 0;
   outline: none;
 }
@@ -338,9 +338,10 @@ html[dir="rtl"]
 }
 
 .toolbar {
-  position: relative;
+  position: absolute;
   left: 0;
   right: 0;
+  bottom: 0;
   z-index: 9999;
   cursor: default;
 }
@@ -396,13 +397,13 @@ html[dir="rtl"] #sidebarResizer {
 .findbar,
 .secondaryToolbar {
   position: relative;
-  height: 32px;
+  height: 55px;
   background-color: var(--toolbar-bg-color);
   box-shadow: 0 1px 0 var(--toolbar-border-color);
 }
 
 #toolbarViewer {
-  height: 32px;
+  height: 55px;
 }
 
 #loadingBar {
@@ -707,7 +708,8 @@ html[dir="ltr"] .doorHangerRight:before {
 #toolbarViewerMiddle {
   position: absolute;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
+  top: 50%;
 }
 
 html[dir="ltr"] #toolbarViewerLeft,
@@ -744,12 +746,6 @@ html[dir="rtl"] .findbar * {
 .splitToolbarButton {
   margin: 2px 2px 0;
   display: inline-block;
-}
-html[dir="ltr"] .splitToolbarButton > .toolbarButton {
-  float: left;
-}
-html[dir="rtl"] .splitToolbarButton > .toolbarButton {
-  float: right;
 }
 
 .toolbarButton,
@@ -1873,16 +1869,6 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
   display: none;
 }
 
-@media all and (max-width: 900px) {
-  #toolbarViewerMiddle {
-    display: table;
-    margin: auto;
-    left: auto;
-    position: inherit;
-    transform: none;
-  }
-}
-
 @media all and (max-width: 840px) {
   #sidebarContainer {
     background-color: var(--sidebar-narrow-bg-color);
@@ -1924,10 +1910,7 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
 }
 
 @media all and (max-width: 640px) {
-  .hiddenSmallView,
-  .hiddenSmallView * {
-    display: none;
-  }
+
   .visibleSmallView {
     display: inherit;
   }

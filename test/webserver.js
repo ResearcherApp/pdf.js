@@ -20,6 +20,7 @@
 var http = require("http");
 var path = require("path");
 var fs = require("fs");
+var request = require("request");
 
 var mimeTypes = {
   ".css": "text/css",
@@ -78,8 +79,8 @@ WebServer.prototype = {
       server.close();
     }
   },
-  _handler(req, res) {
-    var url = req.url.replace(/\/\//g, "/");
+  async _handler(req, res) {
+    var url = req.url;
     var urlParts = /([^?]*)((?:\?(.*))?)/.exec(url);
     try {
       // Guard against directory traversal attacks such as
@@ -122,10 +123,34 @@ WebServer.prototype = {
       return;
     }
 
+    const dl = "/file_dl";
+    if (pathPart.includes(dl)) {
+      console.log(queryPart);
+      const urlParsed = queryPart.slice(5, queryPart.length);
+      if (!urlParsed) {
+        return;
+      }
+      console.log('"' + urlParsed + '"');
+
+      try {
+        const proxyRequest = await request(urlParsed);
+
+        // Pass request to proxied request url
+        await req.pipe(proxyRequest);
+
+        // Respond to the original request with the response from proxyRequest
+        await proxyRequest.pipe(res);
+      } catch (e) {
+        console.log(e);
+      }
+      return;
+    }
+
     var disableRangeRequests = this.disableRangeRequests;
     var cacheExpirationTime = this.cacheExpirationTime;
 
     var filePath;
+
     fs.realpath(path.join(this.root, pathPart), checkFile);
 
     function checkFile(err, file) {
@@ -210,9 +235,9 @@ WebServer.prototype = {
       if (queryPart === "frame") {
         res.end(
           "<html><frameset cols=*,200><frame name=pdf>" +
-            '<frame src="' +
-            encodeURI(pathPart) +
-            '?side"></frameset></html>',
+          '<frame src="' +
+          encodeURI(pathPart) +
+          '?side"></frameset></html>',
           "utf8"
         );
         return;
@@ -225,9 +250,9 @@ WebServer.prototype = {
         }
         res.write(
           '<html><head><meta charset="utf-8"></head><body>' +
-            "<h1>PDFs of " +
-            pathPart +
-            "</h1>\n"
+          "<h1>PDFs of " +
+          pathPart +
+          "</h1>\n"
         );
         if (pathPart !== "/") {
           res.write('<a href="..">..</a><br>\n');
@@ -261,12 +286,12 @@ WebServer.prototype = {
           if (label) {
             res.write(
               '<a href="' +
-                escapeHTML(href) +
-                '"' +
-                extraAttributes +
-                ">" +
-                escapeHTML(label) +
-                "</a><br>\n"
+              escapeHTML(href) +
+              '"' +
+              extraAttributes +
+              ">" +
+              escapeHTML(label) +
+              "</a><br>\n"
             );
           }
         });
@@ -276,7 +301,7 @@ WebServer.prototype = {
         if (!all && queryPart !== "side") {
           res.write(
             "<hr><p>(only PDF files are shown, " +
-              '<a href="?all">show all</a>)</p>\n'
+            '<a href="?all">show all</a>)</p>\n'
           );
         }
         res.end("</body></html>");

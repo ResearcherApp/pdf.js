@@ -71,7 +71,7 @@ const defaultOptions = {
   },
   defaultZoomValue: {
     /** @type {string} */
-    value: "",
+    value: "page-fit",
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE,
   },
   disableHistory: {
@@ -157,7 +157,7 @@ const defaultOptions = {
   },
   scrollModeOnLoad: {
     /** @type {number} */
-    value: -1,
+    value: 1,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE,
   },
   spreadModeOnLoad: {

@@ -33,7 +33,7 @@
       "description": "Default zoom level of the viewer. Accepted values: 'auto', 'page-actual', 'page-width', 'page-height', 'page-fit', or a zoom level in percents.",
       "type": "string",
       "pattern": "|auto|page-actual|page-width|page-height|page-fit|[0-9]+\\.?[0-9]*(,[0-9]+\\.?[0-9]*){0,2}",
-      "default": ""
+      "default": "page-fit"
     },
     "sidebarViewOnLoad": {
       "title": "Sidebar state on load",
@@ -46,7 +46,7 @@
         2,
         3
       ],
-      "default": -1
+      "default": 0
     },
     "enableHandToolOnLoad": {
       "description": "DEPRECATED. Set cursorToolOnLoad to 1 to enable the hand tool by default.",
@@ -186,7 +186,7 @@
         1,
         2
       ],
-      "default": -1
+      "default": 1
     },
     "spreadModeOnLoad": {
       "title": "Spread mode on load",
