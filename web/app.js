@@ -2173,7 +2173,7 @@ function webViewerInitialized() {
     const queryString = document.location.search.substring(1);
     const params = parseQueryString(queryString);
     file = params.get("file") ?? AppOptions.get("defaultUrl");
-    file = "http://localhost:8888/file_dl?file=" + file;
+    file = `${window.location.protocol}//${window.location.host}/file_dl?file=${file}`;
     validateFileURL(file);
   } else if (PDFJSDev.test("MOZCENTRAL")) {
     file = window.location.href;

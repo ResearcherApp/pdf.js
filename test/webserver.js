@@ -16,6 +16,7 @@
 /* eslint-disable no-var */
 
 "use strict";
+require('dotenv').config()
 
 var http = require("http");
 var path = require("path");
@@ -43,7 +44,7 @@ var defaultMimeType = "application/octet-stream";
 function WebServer() {
   this.root = ".";
   this.host = "localhost";
-  this.port = 0;
+  this.port = process.env.PORT || 8080;
   this.server = null;
   this.verbose = false;
   this.cacheExpirationTime = 0;

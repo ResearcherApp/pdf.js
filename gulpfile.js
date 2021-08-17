@@ -38,6 +38,8 @@ const webpackStream = require("webpack-stream");
 const Vinyl = require("vinyl");
 const vfs = require("vinyl-fs");
 const through = require("through2");
+require('dotenv').config()
+
 
 const BUILD_DIR = "build/";
 const L10N_DIR = "l10n/";
@@ -128,11 +130,11 @@ function safeSpawnSync(command, parameters, options) {
   if (result.status !== 0) {
     console.log(
       'Error: command "' +
-        command +
-        '" with parameters "' +
-        parameters +
-        '" exited with code ' +
-        result.status
+      command +
+      '" with parameters "' +
+      parameters +
+      '" exited with code ' +
+      result.status
     );
     process.exit(result.status);
   }
@@ -316,7 +318,7 @@ function checkChromePreferencesFile(chromePrefsPath, webPrefs) {
       ret = false;
       console.log(
         `Warning: not the same values (for "${value}"): ` +
-          `${chromePrefs.properties[value].default} !== ${webPrefs[value]}`
+        `${chromePrefs.properties[value].default} !== ${webPrefs[value]}`
       );
     }
   }
@@ -1898,7 +1900,7 @@ gulp.task(
 
       const WebServer = require("./test/webserver.js").WebServer;
       const server = new WebServer();
-      server.port = 8888;
+      server.port = process.env.PORT || 8080;
       server.start();
     }
   )
@@ -2319,8 +2321,8 @@ gulp.task(
             .on("end", function () {
               console.log(
                 "Result diff can be found at " +
-                  BUILD_DIR +
-                  MOZCENTRAL_DIFF_FILE
+                BUILD_DIR +
+                MOZCENTRAL_DIFF_FILE
               );
               done();
             });
