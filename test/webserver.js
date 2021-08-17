@@ -143,6 +143,7 @@ WebServer.prototype = {
         await proxyRequest.pipe(res);
       } catch (e) {
         console.log(e);
+        res.end()
       }
       return;
     }
