@@ -65,8 +65,7 @@
   },
   "scripts": {
     "postinstall": "cross-env PUPPETEER_PRODUCT=firefox node node_modules/puppeteer/install.js",
-    "test": "gulp npm-test",
-    "start": "gulp server"
+    "test": "gulp npm-test"
   },
   "repository": {
     "type": "git",
