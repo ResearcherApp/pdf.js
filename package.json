@@ -3,7 +3,7 @@
   "scripts": {
     "postinstall": "cross-env PUPPETEER_PRODUCT=firefox node node_modules/puppeteer/install.js",
     "test": "gulp npm-test",
-    "start": "gulp server"
+    "start": "gulp --max-old-space-size=8192 minified"
   },
   "repository": {
     "type": "git",
