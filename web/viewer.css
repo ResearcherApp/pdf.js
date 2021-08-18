@@ -710,6 +710,7 @@ html[dir="ltr"] .doorHangerRight:before {
   left: 50%;
   transform: translate(-50%, -50%);
   top: 50%;
+  width: 100%;
 }
 
 html[dir="ltr"] #toolbarViewerLeft,
@@ -731,7 +732,7 @@ html[dir="ltr"] #toolbarSidebarLeft *,
 html[dir="ltr"] #toolbarSidebarRight *,
 html[dir="ltr"] .findbar * {
   position: relative;
-  float: left;
+  width: max-content;
 }
 html[dir="rtl"] #toolbarViewerLeft > *,
 html[dir="rtl"] #toolbarViewerMiddle > *,

@@ -1900,7 +1900,7 @@ gulp.task(
 
       const WebServer = require("./test/webserver.js").WebServer;
       const server = new WebServer();
-      server.port = process.env.PORT || 8080;
+      server.port = process.env.PORT || 80;
       server.start();
     }
   )
