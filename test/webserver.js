@@ -134,15 +134,19 @@ WebServer.prototype = {
       console.log('"' + urlParsed + '"');
 
       try {
-        const proxyRequest = await request(urlParsed);
+        var response = await request.get(urlParsed).on('error', function (err) {
+          console.log(err)
+          res.writeHead(400);
+          res.end();
+        }).on("response", async function (response) {
 
-        // Pass request to proxied request url
-        await req.pipe(proxyRequest);
+        });
+        await req.pipe(response);
+        await response.pipe(res);
 
-        // Respond to the original request with the response from proxyRequest
-        await proxyRequest.pipe(res);
       } catch (e) {
         console.log(e);
+        res.writeHead(400);
         res.end()
       }
       return;

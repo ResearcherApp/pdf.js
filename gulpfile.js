@@ -1858,7 +1858,7 @@ gulp.task(
   "dev-sandbox",
   gulp.series(
     function scriptingDevSandbox() {
-      const defines = builder.merge(DEFINES, { GENERIC: true, TESTING: true });
+      const defines = builder.merge(DEFINES, { GENERIC: true, TESTING: false, MINIFIED_DIR: true });
       return createTemporaryScriptingBundle(defines, {
         disableVersionInfo: true,
       });
@@ -1867,7 +1867,7 @@ gulp.task(
       console.log();
       console.log("### Building development sandbox");
 
-      const defines = builder.merge(DEFINES, { GENERIC: true, TESTING: true });
+      const defines = builder.merge(DEFINES, { GENERIC: true, TESTING: false, MINIFIED_DIR: true });
       const sandboxDir = BUILD_DIR + "dev-sandbox/";
 
       rimraf.sync(sandboxDir);
