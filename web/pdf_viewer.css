@@ -34,7 +34,6 @@
 }
 
 .pdfViewer {
-  padding-bottom: var(--pdfViewer-padding-bottom);
   align-self: center;
 }
 
