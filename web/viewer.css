@@ -313,6 +313,7 @@ html[dir="rtl"] #sidebarContent {
   bottom: 32px;
   left: 0;
   outline: none;
+  display: flex;
 }
 #viewerContainer:not(.pdfPresentationMode) {
   transition-duration: var(--sidebar-transition-duration);
