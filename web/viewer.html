@@ -64,6 +64,7 @@ See https://github.com/adobe-type-tools/cmap-resources
   <!--#endif-->
 </head>
 <body tabindex="1">
+  <base target="_blank">
   <div id="outerContainer">
     <div id="sidebarContainer">
       <div id="toolbarSidebar">
@@ -561,8 +562,9 @@ See https://github.com/adobe-type-tools/cmap-resources
       <!--#if CHROME-->
       <!--#include viewer-snippet-chrome-overlays.html-->
       <!--#endif-->
-    </div><!-- overlayContainer -->
-  </div><!-- outerContainer -->
+    </div>
+  </div><!-- overlayContainer -->
+  <!-- outerContainer -->
   <div id="printContainer"></div>
   <script>
     let pinchZoomEnabled = false;
