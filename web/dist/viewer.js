@@ -169,7 +169,7 @@
           kind: OptionKind.API
         },
         cMapUrl: {
-          value: "../web/cmaps/",
+          value: "../cmaps/",
           kind: OptionKind.API
         },
         disableAutoFetch: {
@@ -213,7 +213,7 @@
           kind: OptionKind.API
         },
         standardFontDataUrl: {
-          value: "../web/standard_fonts/",
+          value: "../standard_fonts/",
           kind: OptionKind.API
         },
         verbosity: {
@@ -225,7 +225,7 @@
           kind: OptionKind.WORKER
         },
         workerSrc: {
-          value: "../build/pdf.worker.js",
+          value: "./pdf.worker.js",
           kind: OptionKind.WORKER
         }
       };
@@ -239,7 +239,7 @@
           kind: OptionKind.VIEWER
         };
         defaultOptions.sandboxBundleSrc = {
-          value: "../build/pdf.sandbox.js",
+          value: "./pdf.sandbox.js",
           kind: OptionKind.VIEWER
         };
         defaultOptions.renderer.kind += OptionKind.PREFERENCE;
@@ -3878,7 +3878,7 @@
       if (typeof window !== "undefined" && window["pdfjs-dist/build/pdf"]) {
         pdfjsLib = window["pdfjs-dist/build/pdf"];
       } else {
-        pdfjsLib = require("../../build/pdf.js");
+        pdfjsLib = require("./pdf.js");
       }
 
       module.exports = pdfjsLib;
